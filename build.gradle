@@ -1,0 +1,36 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'groovy'
+    id 'com.gradle.plugin-publish' version '0.10.0'
+}
+
+group 'ba.klika'
+version '1.0'
+
+pluginBundle {
+    website = 'https://github.com/klikaba/gradle-xray'
+    vcsUrl = 'https://github.com/klikaba/gradle-xray'
+    tags = ['xray', 'upload', 'testng', 'xml', 'report', 'gradle']
+}
+
+gradlePlugin {
+    plugins {
+        gradleXray {
+            id = 'ba.klika.gradlexray'
+            displayName = 'Xray XML Upload'
+            description = 'Plugin for uploading TestNG XML reports to Xray'
+            implementationClass = 'ba.klika.XrayUploadPlugin'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile gradleApi()
+    testImplementation gradleTestKit()
+    testImplementation 'junit:junit:4.12'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+}
