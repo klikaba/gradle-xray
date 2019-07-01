@@ -14,7 +14,7 @@ class XrayUploadPlugin implements Plugin<Project>{
     @Override
     void apply(Project project) {
 
-        XrayExtension extension = project.extensions.create('xrayextension', XrayExtension)
+        XrayExtension extension = project.extensions.create('xrayCredentials', XrayExtension)
 
         project.getTasks().register("uploadxmlreport", UploadXmlReportTask) { t ->
         }

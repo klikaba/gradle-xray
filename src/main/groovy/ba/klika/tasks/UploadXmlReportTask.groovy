@@ -18,8 +18,8 @@ class UploadXmlReportTask extends UploadXmlReportBaseTask {
     @TaskAction
     def upload() {
 
-        def clientId = project.xrayextension.clientId
-        def clientSecret = project.xrayextension.clientSecret
+        def clientId = project.xrayCredentials.clientId
+        def clientSecret = project.xrayCredentials.clientSecret
 
         if (!testExecution.get()) {
             throw new GradleException("testExecution field must not be empty!")
