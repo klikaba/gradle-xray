@@ -16,7 +16,7 @@ pluginBundle {
 gradlePlugin {
     plugins {
         gradleXray {
-            id = 'ba.klika.gradlexray'
+            id = 'ba.klika.xray'
             displayName = 'Xray XML Upload'
             description = 'Plugin for uploading TestNG XML reports to Xray'
             implementationClass = 'ba.klika.XrayUploadPlugin'
