@@ -78,7 +78,7 @@ xrayCredentials {
 
 task uploadTestExecutionA(type: ba.klika.tasks.UploadXmlReportTask) {
     testExecution = "TestExecutionA"
-    filePath = "$buildDir/reports/tests/TestExecutionA/testng-results.xml".toString()
+    filePath = "$buildDir/reports/tests/testExecutionA/testng-results.xml".toString()
 }
 
 task testExecutionA(type: Test) {
