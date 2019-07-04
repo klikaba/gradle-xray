@@ -45,29 +45,11 @@ xrayCredentials {
 }
 ```
 
-### Upload XML Task
+### Upload XML Report
 
-To be able to upload XML report you must know two things: Test Execution Key and file path. 
-
-In order to upload XML report after test you need to run Upload task after tests are executed (finalizedBy). Just add:
+To be able to upload XML report you must know two things: Test execution key and file path. 
 
 File : `build.gradle`
-
-```groovy
-task testA(type: Test) {
-    useTestNG() {
-        useDefaultListeners = false
-        suites "suitename.xml"
-    }
-    finalizedBy uploadTestA
-}
-```
-
-This will upload the XML report of `testA`.
-
-### Example 1
-
-Simple script to upload report to Xray after tests:
 
 ```groovy
 
@@ -76,16 +58,23 @@ xrayCredentials {
     clientSecret = "xxxxxxxxxx"
 }
 
-task uploadTestExecutionA(type: ba.klika.tasks.UploadXmlReportTask) {
-    testExecution = "TestExecutionA"
-    filePath = "$buildDir/reports/tests/testExecutionA/testng-results.xml".toString()
+task uploadTest(type: ba.klika.tasks.UploadXmlReportTask) {
+    testExecution = "TEST-123"
+    filePath = "$buildDir/reports/tests/{testName}/testng-results.xml".toString()
 }
 
-task testExecutionA(type: Test) {
+```
+
+In order to upload XML report after test automatically just add `finalizedBy` at the end of the test referencing to the upload task like this:
+
+```groovy
+
+task regressionTest(type: Test) {
     useTestNG() {
         useDefaultListeners = false
-        suites "src/test/resources/suites/testExecutionA.xml"
+        suites "src/test/resources/suites/regression_test.xml"
     }
-    finalizedBy uploadTestExecutionA
+    finalizedBy uploadRegressionTest
 }
+
 ```
